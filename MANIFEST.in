@@ -1,0 +1,5 @@
+include *.txt
+include pymfclib *.c *.cpp *.h *.pyx *.pxd *.pxi *.rc *.sln *.vcproj *.idl
+include pymfclib/res *.rc2
+include test_pymfc *.py *.ico *.bmp
+

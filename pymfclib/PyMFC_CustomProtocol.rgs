@@ -1,0 +1,25 @@
+HKCR
+{
+	pymfclib.PyMFC_CustomProtocol.1 = s 'PyMFC_CustomProtocol Class'
+	{
+		CLSID = s '{3B507234-6A52-4FAC-8664-3C3D76C1C13E}'
+	}
+	pymfclib.PyMFC_CustomProtocol = s 'PyMFC_CustomProtocol Class'
+	{
+		CLSID = s '{3B507234-6A52-4FAC-8664-3C3D76C1C13E}'
+		CurVer = s 'pymfclib.PyMFC_CustomProtocol.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {3B507234-6A52-4FAC-8664-3C3D76C1C13E} = s 'PyMFC_CustomProtocol Class'
+		{
+			ProgID = s 'pymfclib.PyMFC_CustomProtocol.1'
+			VersionIndependentProgID = s 'pymfclib.PyMFC_CustomProtocol'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{F8C455CD-450D-4001-AE8A-C536D77876E1}'
+		}
+	}
+}

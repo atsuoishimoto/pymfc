@@ -1,0 +1,34 @@
+// pymfclib.idl : pymfclib の IDL ソース
+//
+
+// このファイルは、タイプ ライブラリ (pymfclib.tlb) およびマーシャリング コードを
+// 作成するために MIDL ツールによって処理されます。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(2B4CE3D9-C71E-49A2-83B5-13900F624327),
+	helpstring("IPyMFC_CustomProtocol インターフェイス"),
+	pointer_default(unique)
+]
+interface IPyMFC_CustomProtocol : IUnknown{
+};
+[
+	uuid(F8C455CD-450D-4001-AE8A-C536D77876E1),
+	version(1.0),
+	helpstring("pymfclib 1.0 タイプ ライブラリ")
+]
+library pymfclibLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(3B507234-6A52-4FAC-8664-3C3D76C1C13E),
+		helpstring("PyMFC_CustomProtocol Class")
+	]
+	coclass PyMFC_CustomProtocol
+	{
+		[default] interface IPyMFC_CustomProtocol;
+	};
+};
