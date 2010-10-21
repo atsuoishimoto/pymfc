@@ -54,7 +54,6 @@ BEGIN
     "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
     "#endif\r\n"
     "\r\n"
-    "1 TYPELIB ""pymfclib.tlb\0"
 END
 
 #endif    // APSTUDIO_INVOKED
@@ -130,7 +129,6 @@ LANGUAGE 17, 1
 #include "l.jpn\afxres.rc"          // 標準のコンポーネント
 #endif
 
-1 TYPELIB "pymfclib.tlb"
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
 

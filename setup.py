@@ -33,7 +33,7 @@ def getext(path):
 def gentlb():
     os.system('midl /D "NDEBUG"  /nologo /char signed /env win32  /tlb "pymfclib.tlb" pymfclib\\pymfclib.idl')
                                 
-gentlb()
+#gentlb()
 
 macros = [("WIN32", None), ("_WINDOWS", None), ("_USRDLL", None), ("_WINDLL", None),
           ("_AFXDLL", None), ("_UNICODE", None), ("UNICODE", None), 
