@@ -23,13 +23,13 @@ def callback(url):
             'src':html,
             'mimetype':u'text/html'
         }
-#    if url == url2:
-#        print 2222222222222222222222222222222222222
-#        return {
-#            'src':open("c:\\src\\infopile\\src\\a.gif", "rb").read(),
-#            'mimetype':u'image/gif'
-#        }
-#
+    if url == url2:
+        print 2222222222222222222222222222222222222
+        return {
+            'src':open("c:\\src\\infopile\\src\\a.gif", "rb").read(),
+            'mimetype':u'image/gif'
+        }
+
 
 def run():
     for i in range(1):
