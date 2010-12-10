@@ -209,23 +209,24 @@ class Mode(object):
 
     def onLButtonDown(self, wnd, x, y, alt, ctrl, shift):
         wnd.setFocus()
-        if x >= 0:
-            pos = wnd.locToPos((x, y))
-            if not shift and not ctrl and not alt:
-                wnd.clearSelection()
-                wnd.caret.locate(pos, saveCol=True)
-                wnd.startSelection()
-                wnd.startMouseSelection()
-            elif shift and not ctrl and not alt:
-                wnd.startSelection()
-                wnd.caret.locate(pos, saveCol=True)
-                wnd.setSelectionTo()
-                wnd.startMouseSelection()
-            elif not shift and not ctrl and alt:
-                wnd.clearSelection()
-                wnd.caret.locate(pos, saveCol=True)
-                wnd.startBlockSelection()
-                wnd.startMouseBlockSelection()
+        
+        x = max(0, x)
+        pos = wnd.locToPos((x, y))
+        if not shift and not ctrl and not alt:
+            wnd.clearSelection()
+            wnd.caret.locate(pos, saveCol=True)
+            wnd.startSelection()
+            wnd.startMouseSelection()
+        elif shift and not ctrl and not alt:
+            wnd.startSelection()
+            wnd.caret.locate(pos, saveCol=True)
+            wnd.setSelectionTo()
+            wnd.startMouseSelection()
+        elif not shift and not ctrl and alt:
+            wnd.clearSelection()
+            wnd.caret.locate(pos, saveCol=True)
+            wnd.startBlockSelection()
+            wnd.startMouseBlockSelection()
 
         
     def onLButtonDblClk(self, wnd, x, y, alt, ctrl, shift):
