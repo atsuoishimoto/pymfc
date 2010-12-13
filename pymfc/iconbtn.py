@@ -196,6 +196,9 @@ class IconButton(object):
     def isDropDown(self):
         return self._dropDownPressing
 
+    def isDisabled(self):
+        return self._disabled
+
     def setDisabled(self, disabled):
         ret = self._disabled != disabled
         self._disabled = disabled
