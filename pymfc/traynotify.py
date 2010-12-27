@@ -31,7 +31,9 @@ class TrayNotify(_pymfclib._TrayNotify):
         self.deleteIcon()
 
     def _onNotify(self, msg):
-        if msg.lparam == 0x0201: # WM_LBUTTONDOWN
+        if msg.lparam == 0x0200: # WM_MOUSEMOVE
+            self.onMouseMove(msg)
+        elif msg.lparam == 0x0201: # WM_LBUTTONDOWN
             self.onLBtnDown(msg)
         elif msg.lparam == 0x0202: # WM_LBUTTONUP
             self.onLBtnUp(msg)
@@ -44,6 +46,9 @@ class TrayNotify(_pymfclib._TrayNotify):
         elif msg.lparam == 0x0206: # WM_RBUTTONDBLCLK
             self.onRBtnDblClk(msg)
         return 0
+        
+    def onMouseMove(self, msg):
+        pass
         
     def onLBtnDown(self, msg):
         pass
