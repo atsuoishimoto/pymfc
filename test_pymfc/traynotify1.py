@@ -24,13 +24,20 @@ class Frame(wnd.FrameWnd):
     
     def _prepare(self, kwargs):
         super(Frame, self)._prepare(kwargs)
-        print 111111111111111
         self.icon1 = gdi.Icon(filename=u".\\test_pymfc\\pc.ico", cx=16, cy=16)
-        notify = Notify(self, self.icon1, u"abcdefg")
-        
+        self.notify = Notify(self, self.icon1, u"abcdefg")
+
+
+    
+import time
+
 def run():
+    def ontimer():
+        f.notify.setIcon(tip=unicode(time.clock()))
+        
     f = Frame()
     f.create()
+    timer = wnd.TimerProc(1000, ontimer, f)
 
     app.run()
 

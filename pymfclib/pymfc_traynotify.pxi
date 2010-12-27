@@ -27,18 +27,28 @@ cdef extern from "shellapi.h":
 
 cdef class _TrayNotify:
     cdef NOTIFYICONDATA _icondata
+
+    cdef _setdata(self, icon, tip):
+        if icon:
+            self._icondata.hIcon=PyMFCHandle_AsHandle(icon.getHandle())
+            self._icondata.uFlags = self._icondata.uFlags | NIF_ICON
+        else:
+            self._icondata.uFlags = self._icondata.uFlags & (~NIF_ICON)
+            
+        if tip:
+            _tcsncpy(self._icondata.szTip, PyUnicode_AsUnicode(tip), sizeof(self._icondata.szTip))
+            self._icondata.uFlags = self._icondata.uFlags | NIF_TIP
+        else:
+            self._icondata.uFlags = self._icondata.uFlags & (~NIF_TIP)
+            
+
     def __init__(self, notifyid, icon=None, tip=None):
         self._icondata.cbSize = sizeof(NOTIFYICONDATA)
         self._icondata.uID = notifyid
         self._icondata.uFlags = NIF_MESSAGE
         self._icondata.uCallbackMessage = notifyid
-        if icon:
-            self._icondata.hIcon=PyMFCHandle_AsHandle(icon.getHandle())
-            self._icondata.uFlags = self._icondata.uFlags | NIF_ICON
-        if tip:
-            _tcsncpy(self._icondata.szTip, PyUnicode_AsUnicode(tip), sizeof(self._icondata.szTip))
-            self._icondata.uFlags = self._icondata.uFlags | NIF_TIP
         
+        self._setdata(icon, tip)
         
     def addIcon(self, wnd):
         self._icondata.hWnd = PyMFCHandle_AsHandle(wnd.getHwnd())
@@ -49,4 +59,8 @@ cdef class _TrayNotify:
         if not Shell_NotifyIcon(NIM_DELETE, &self._icondata):
             pymRaiseWin32Err()
 
-            
+    def setIcon(self, icon=None, tip=None):
+        self._setdata(icon, tip)
+        if not Shell_NotifyIcon(NIM_MODIFY, &self._icondata):
+            pymRaiseWin32Err()
+        
