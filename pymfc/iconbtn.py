@@ -185,7 +185,9 @@ class IconButton(object):
         self._fgColor = textcolor
 
     def pushed(self, f):
+        ret = self._pushed != f
         self._pushed = f
+        return ret
 
     def isPushed(self):
         return self._pushed
