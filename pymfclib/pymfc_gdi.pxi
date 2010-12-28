@@ -1964,6 +1964,7 @@ cdef extern from "windows.h":
     BOOL Rectangle(HDC hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect)
     BOOL RoundRect(HDC hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidth, int nHeight)
     BOOL Ellipse(HDC hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect)
+    BOOL Chord(HDC hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nXRadial1, int nYRadial1, int nXRadial2, int nYRadial2 )
     int FrameRect(HDC hDC, RECT *, HBRUSH hbr)
     int FillRect(HDC hDC, RECT *, HBRUSH hbr)
     int DrawEdge(HDC hdc, RECT *lpRect, int nEdge, int nFlags)
@@ -3060,6 +3061,10 @@ cdef class DC:
         if 0 == Ellipse(self._hDC, rc[0], rc[1], rc[2], rc[3]):
             pymRaiseWin32Err()
     
+    def chord(self, rc, start, end):
+        if 0 == Chord(self._hDC, rc[0], rc[1], rc[2], rc[3], start[0], start[1], end[0], end[1]):
+            pymRaiseWin32Err()
+        
     def frameRect(self, rc, brush):
         cdef RECT r
         cdef HBRUSH hbrush
